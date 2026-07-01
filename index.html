@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morais Barbearia | Barbearia Premium na Savassi</title>
+  <meta name="description" content="Morais Barbearia na Savassi, Belo Horizonte. Corte masculino, barba, acabamento, atendimento individualizado e agendamento online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0d0b;
+  --card: #171511;
+  --card2: #201d17;
+  --gold: #c99b45;
+  --gold2: #f0c46d;
+  --cream: #f5ebd8;
+  --muted: #b8aa91;
+  --line: rgba(245,235,216,.13);
+  --green: #28c76f;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: Inter,system-ui,sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1160px,92%);
+  margin: auto;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: linear-gradient(180deg,rgba(22,19,16,.94),rgba(14,13,11,.82));
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transition: .28s;
+}
+
+.nav {
+  height: 95px;
+  display: grid;
+  grid-template-columns: 150px 1fr 190px;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.brand span:not(.mark) { display: none; }
+
+.logo-img {
+  width: 140px;
+  height: 90px;
+  border-radius: 0;
+  object-fit: contain;
+  border: 0;
+  background: transparent;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
+}
+
+.mark {
+  width: 70px;
+  height: 70px;
+  border: 1px solid var(--gold);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: Anton;
+  font-size: 30px;
+  color: var(--gold2);
+}
+
+.navlinks {
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+
+.navlinks a { position: relative; }
+
+.navlinks a:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  background: var(--gold2);
+  transform: scaleX(0);
+  transition: .25s;
+}
+
+.navlinks a:hover { color: var(--cream); }
+
+.navlinks a:hover:after { transform: scaleX(1); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg,var(--gold),var(--gold2));
+  color: #17100a;
+  font-weight: 900;
+  padding: 16px 26px;
+  border-radius: 999px;
+  box-shadow: 0 12px 32px rgba(201,155,69,.2);
+  transition: .25s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn.dark {
+  background: transparent;
+  color: var(--cream);
+  box-shadow: none;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 0 70px;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at 80% 15%,rgba(201,155,69,.22),transparent 34%),
+              linear-gradient(120deg,#0e0d0b 0%,#15120d 54%,#080706 100%);
+}
+
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,rgba(14,13,11,.94),rgba(14,13,11,.68),rgba(14,13,11,.18)),
+              url('assets/hero.jpg'),
+              url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1600&q=80') center/cover;
+  opacity: .54;
+}
+
+.hero .wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 46px;
+  align-items: center;
+}
+
+.eyebrow {
+  color: var(--gold2);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: 12px;
+}
+
+.hero h1 {
+  font-family: Anton,Impact,sans-serif;
+  font-size: clamp(54px,8vw,118px);
+  line-height: .88;
+  margin: 18px 0 20px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.hero h1 span { color: var(--gold2); }
+
+.hero p {
+  font-size: clamp(17px,2vw,22px);
+  line-height: 1.65;
+  color: #dfd2bb;
+  max-width: 650px;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.stat {
+  background: rgba(245,235,216,.08);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.stat strong {
+  font-family: Anton;
+  font-size: 32px;
+  color: var(--gold2);
+  display: block;
+}
+
+.stat small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hero-card {
+  background: rgba(23,21,17,.82);
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  padding: 24px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+}
+
+.appointment {
+  border-radius: 26px;
+  padding: 26px;
+  background: linear-gradient(180deg,#211d16,#12100d);
+  border: 1px solid rgba(201,155,69,.28);
+}
+
+.appointment h3 {
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.info-row {
+  display: flex;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  color: #d7c8ad;
+}
+
+.info-row b { color: var(--cream); }
+
+section { padding: 94px 0; }
+
+.section-title {
+  font-family: Anton;
+  font-size: clamp(38px,5vw,72px);
+  line-height: .96;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+
+.section-title span { color: var(--gold2); }
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 780px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.card {
+  background: linear-gradient(180deg,var(--card),#100f0c);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 28px;
+  min-height: 220px;
+}
+
+.card .num {
+  font-family: Anton;
+  color: var(--gold2);
+  font-size: 44px;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin: 8px 0 12px;
+}
+
+.card p,
+.card li {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.services { background: #11100d; }
+
+.service {
+  display: grid;
+  grid-template-columns: 112px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 26px 0;
+}
+
+.service:last-child { border-bottom: 1px solid var(--line); }
+
+.service-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(201,155,69,.30);
+  background: rgba(201,155,69,.12);
+}
+
+.service-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: rgba(201,155,69,.12);
+  border: 1px solid rgba(201,155,69,.27);
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+.service h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.service p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.tag {
+  color: var(--gold2);
+  font-weight: 900;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.image-block {
+  min-height: 460px;
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg,rgba(201,155,69,.17),rgba(0,0,0,.45)),
+              url('assets/experiencia.jpg'),
+              url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1100&q=80') center/cover;
+  box-shadow: 0 25px 80px rgba(0,0,0,.4);
+}
+
+.bullets {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.bullet {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(245,235,216,.05);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  color: #dacdb5;
+}
+
+.bullet:before {
+  content: "✓";
+  color: var(--gold2);
+  font-weight: 900;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.review {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 24px;
+}
+
+.stars {
+  color: var(--gold2);
+  letter-spacing: 2px;
+}
+
+.review p {
+  color: #d6c8b1;
+  line-height: 1.65;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr .8fr;
+  grid-auto-rows: 260px;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.ph {
+  position: relative;
+  border-radius: 28px;
+  background: linear-gradient(135deg,rgba(201,155,69,.18),rgba(255,255,255,.04)),
+              url('assets/galeria-1.jpg'),
+              url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80');
+  background-position: center;
+  background-size: cover;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: .35s;
+}
+
+.ph:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,transparent 55%,rgba(0,0,0,.28));
+  opacity: .55;
+  transition: .3s;
+}
+
+.ph:hover:after { opacity: .2; }
+
+.ph:hover { transform: scale(1.015); }
+
+.edit-note {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(201,155,69,.08);
+  border: 1px dashed rgba(201,155,69,.45);
+  color: #d8c8ac;
+  line-height: 1.65;
+}
+
+.ph:nth-child(1) { grid-row: span 2; }
+
+.ph:nth-child(3) {
+  background-image: linear-gradient(135deg,rgba(201,155,69,.18),rgba(255,255,255,.04)),
+                    url('assets/galeria-2.jpg'),
+                    url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80');
+}
+
+.ph:nth-child(2) {
+  background-image: linear-gradient(135deg,rgba(201,155,69,.18),rgba(255,255,255,.04)),
+                    url('assets/galeria-3.jpg'),
+                    url('https://images.unsplash.com/photo-1622286346003-c5c7e63b1088?auto=format&fit=crop&w=900&q=80');
+}
+
+.ph:nth-child(4) {
+  background-image: linear-gradient(135deg,rgba(201,155,69,.18),rgba(255,255,255,.04)),
+                    url('assets/galeria-4.jpg'),
+                    url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=80');
+}
+
+.ph:nth-child(5) {
+  background-image: linear-gradient(135deg,rgba(201,155,69,.18),rgba(255,255,255,.04)),
+                    url('assets/galeria-5.jpg'),
+                    url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80');
+}
+
+.local-section {
+  background: linear-gradient(180deg,#0e0d0b,#14110d);
+}
+
+.local-frame {
+  margin-top: 38px;
+  border: 1px solid var(--line);
+  border-radius: 36px;
+  overflow: hidden;
+  background: linear-gradient(180deg,var(--card),#100f0c);
+  box-shadow: 0 28px 90px rgba(0,0,0,.42);
+}
+
+.local-main-photo {
+  position: relative;
+  min-height: 560px;
+  background: linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.56)),
+              url('assets/local-1.png') center/cover;
+}
+
+.local-main-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,transparent 45%,rgba(0,0,0,.58));
+}
+
+.local-photo-text {
+  position: absolute;
+  left: 42px;
+  bottom: 38px;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.local-photo-text h3 {
+  font-family: Anton,Impact,sans-serif;
+  font-size: clamp(34px,5vw,68px);
+  line-height: .95;
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+
+.local-bottom {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  border-top: 1px solid var(--line);
+}
+
+.local-copy {
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.local-copy h3 {
+  font-size: 32px;
+  margin: 0 0 16px;
+}
+
+.local-copy p {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 17px;
+  margin: 0 0 24px;
+}
+
+.local-points {
+  display: grid;
+  gap: 12px;
+}
+
+.local-point {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(245,235,216,.05);
+  border: 1px solid var(--line);
+  color: #dacdb5;
+}
+
+.local-point:before {
+  content: "✓";
+  color: var(--gold2);
+  font-weight: 900;
+}
+
+.local-side-photo {
+  min-height: 430px;
+  background: linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.42)),
+              url('assets/local-2.png') center/cover;
+  border-left: 1px solid var(--line);
+  position: relative;
+}
+
+.local-side-photo span {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(14,13,11,.78);
+  border: 1px solid rgba(201,155,69,.38);
+  color: var(--gold2);
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.map {
+  border: 0;
+  width: 100%;
+  height: 420px;
+  border-radius: 30px;
+  filter: grayscale(.15) contrast(1.05);
+}
+
+.cta {
+  background: linear-gradient(135deg,#21180d,#0e0d0b 62%,#342313);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.cta p { margin-inline: auto; }
+
+.float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30;
+  background: var(--green);
+  color: white;
+  font-weight: 900;
+  padding: 15px 18px;
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+}
+
+footer {
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footergrid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media(max-width:860px) {
+  .navlinks { display: none; }
+
+  .nav {
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo-img {
+    width: 82px;
+    height: 56px;
+  }
+
+  .hero { padding-top: 100px; }
+
+  .hero .wrap,
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-card { order: -1; }
+
+  .stats,
+  .grid3,
+  .reviews {
+    grid-template-columns: 1fr;
+  }
+
+  .service { grid-template-columns: 86px 1fr; }
+
+  .service-photo {
+    width: 76px;
+    height: 76px;
+    border-radius: 20px;
+  }
+
+  .service .btn { grid-column: 1/-1; }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .ph:nth-child(1) { grid-row: span 1; }
+
+  .image-block { min-height: 340px; }
+
+  .hero h1 { font-size: 58px; }
+
+  .float {
+    left: 16px;
+    right: 16px;
+    text-align: center;
+  }
+
+  section { padding: 70px 0; }
+
+  .local-frame {
+    border-radius: 28px;
+  }
+
+  .local-main-photo {
+    min-height: 360px;
+  }
+
+  .local-photo-text {
+    left: 24px;
+    right: 24px;
+    bottom: 26px;
+  }
+
+  .local-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .local-copy {
+    padding: 26px;
+  }
+
+  .local-side-photo {
+    min-height: 330px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+</style>
+</head>
+<body>
+  <!--
+    TROCAR IMAGENS:
+    Coloque suas fotos na pasta assets com estes nomes:
+    logo.png, hero.jpg, experiencia.jpg, servico-corte.jpg, servico-barba.jpg, servico-combo.jpg, servico-acabamento.jpg, servico-pacotes.jpg, galeria-1.jpg até galeria-5.jpg.
+    Se alguma imagem não existir, o site usa uma imagem premium da internet como reserva.
+  -->
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Morais Barbearia">
+        <img class="logo-img" src="assets/logo.png" alt="Logo Morais Barbearia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+        <span class="mark" style="display:none">M</span>
+      </a>
+      <nav class="navlinks">
+        <a href="#servicos">Serviços</a>
+        <a href="#ambiente">Ambiente</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#localizacao">Localização</a>
+      </nav>
+      <a class="btn" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Agendar Horário</a>
+    </div>
+  </header>
+
+  <main id="top" class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Savassi • Belo Horizonte</div>
+        <h1>Barba,<br>cabelo<br><span>e presença.</span></h1>
+        <p>Uma barbearia clássica e tradicional para quem valoriza atendimento individualizado, acabamento preciso e uma experiência agradável do começo ao fim.</p>
+        <div class="actions"><a class="btn" href="https://wa.me/5531988018808" target="_blank">Agendar pelo WhatsApp</a><a class="btn dark" href="#servicos">Ver serviços</a></div>
+        <div class="stats"><div class="stat"><strong>4,9</strong><small>avaliação Google</small></div><div class="stat"><strong>1,9k+</strong><small>seguidores</small></div></div>
+      </div>
+      <aside class="hero-card">
+        <div class="appointment">
+          <div class="eyebrow">Agendamento online</div>
+          <h3>Morais Barbearia</h3>
+          <div class="info-row"><span>📍</span><div><b>Rua Antônio de Albuquerque, 749 - Loja 14</b><br>Savassi, Belo Horizonte - MG</div></div>
+          <div class="info-row"><span>☎</span><div><b>(31) 98801-8808</b><br>Atendimento por WhatsApp</div></div>
+          <div class="info-row"><span>⏱</span><div><b>Abre às 09:00</b><br>Consulte horários disponíveis</div></div>
+          <br><a class="btn" style="width:100%" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Reservar meu horário</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section id="experiencia">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">Experiência premium</div>
+        <h2 class="section-title">Mais que corte.<br><span>Um ritual.</span></h2>
+        <p class="lead">Inspirado em barbearias consolidadas, o site valoriza três pontos que vendem muito bem: experiência, confiança e facilidade de agendamento. A ideia é posicionar a Morais como escolha certa para quem está na Savassi e quer qualidade sem complicação.</p>
+        <div class="bullets"><div class="bullet">Atendimento individualizado, com escuta do estilo e rotina de cada cliente.</div><div class="bullet">Ambiente agradável, tradicional e com serviço de qualidade.</div><div class="bullet">Agendamento rápido para reduzir espera e organizar melhor a agenda.</div></div>
+      </div>
+      <div class="image-block" aria-label="barbearia premium"></div>
+    </div>
+  </section>
+
+  <section id="ambiente" class="local-section">
+    <div class="wrap">
+      <div class="eyebrow">O ambiente</div>
+      <h2 class="section-title">Um espaço clássico,<br><span>confortável e exclusivo.</span></h2>
+      <p class="lead">A Morais Barbearia combina tradição, conforto e atendimento individualizado para transformar cada visita em uma experiência completa.</p>
+
+      <div class="local-frame">
+        <div class="local-main-photo">
+          <div class="local-photo-text">
+            <div class="eyebrow">Conheça nosso espaço</div>
+            <h3>A experiência começa<br>antes do corte.</h3>
+          </div>
+        </div>
+
+        <div class="local-bottom">
+          <div class="local-copy">
+            <h3>Conforto desde a chegada</h3>
+            <p>Um ambiente com estética marcante, iluminação aconchegante, detalhes clássicos e estrutura organizada para quem valoriza qualidade, estilo e tranquilidade.</p>
+
+            <div class="local-points">
+              <div class="local-point">Ambiente agradável para esperar e ser atendido sem pressa.</div>
+              <div class="local-point">Atendimento individualizado, com atenção ao estilo de cada cliente.</div>
+              <div class="local-point">Visual clássico que transmite tradição, confiança e personalidade.</div>
+              <div class="local-point">Estrutura preparada para corte, barba e uma experiência premium.</div>
+            </div>
+          </div>
+
+          <div class="local-side-photo">
+            <span>Ambiente interno</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" class="services">
+    <div class="wrap">
+      <div class="eyebrow">Produtos e serviços</div>
+      <h2 class="section-title">Serviços para<br><span>homens exigentes.</span></h2>
+      <p class="lead">Uma apresentação premium dos serviços aumenta a percepção de valor e facilita o cliente escolher o que deseja antes de chamar no WhatsApp.</p>
+      <div class="service"><div class="service-photo"><img src="assets/servico-corte.jpg" alt="Corte masculino" onerror="this.src='https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=500&q=80'"></div><div><h3>Corte Masculino</h3><p>Corte alinhado ao estilo do cliente, com acabamento preciso e visual bem finalizado.</p></div><a class="btn dark" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Agendar</a></div>
+      <div class="service"><div class="service-photo"><img src="assets/servico-barba.jpg" alt="Barba tradicional" onerror="this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=500&q=80'"></div><div><h3>Barba Tradicional</h3><p>Modelagem, alinhamento e finalização para deixar a barba limpa, desenhada e elegante.</p></div><a class="btn dark" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Agendar</a></div>
+      <div class="service"><div class="service-photo"><img src="assets/servico-combo.jpg" alt="Corte e barba" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80'"></div><div><h3>Corte + Barba</h3><p>Experiência completa para renovar o visual em um único atendimento.</p></div><a class="btn dark" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Agendar</a></div>
+      <div class="service"><div class="service-photo"><img src="assets/servico-acabamento.png" alt="Acabamento e manutenção" onerror="this.src='https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=500&q=80'"></div><div><h3>Acabamento e Manutenção</h3><p>Ideal para manter o visual alinhado entre um corte e outro.</p></div><a class="btn dark" href="https://booksy.com/pt-br/132520_morais-barbearia_barbearias_459592_belo-horizonte" target="_blank">Agendar</a></div>
+      <div class="service"><div class="service-photo"><img src="assets/servico-pacotes.jpg" alt="Pacotes e serviços especiais" onerror="this.src='https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=500&q=80'"></div><div><h3>Pacotes e Serviços Especiais</h3><p>Opções de cuidado completo, com serviços que podem variar conforme agenda e disponibilidade.</p></div><span class="tag">Consultar</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Por que escolher</div>
+      <h2 class="section-title">O que faz a<br><span>Morais se destacar.</span></h2>
+      <div class="grid3"><div class="card"><div class="num">01</div><h3>Localização forte</h3><p>Na Savassi, uma das regiões mais movimentadas e estratégicas de Belo Horizonte.</p></div><div class="card"><div class="num">02</div><h3>Prova social</h3><p>Nota 4,9 no Google e avaliações destacando qualidade, ambiente agradável e preço justo.</p></div><div class="card"><div class="num">03</div><h3>Agendamento fácil</h3><p>Botões diretos para WhatsApp e chamada clara para reservar horário.</p></div></div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="wrap">
+      <div class="eyebrow">Ambiente & estilo</div>
+      <h2 class="section-title">Visual clássico,<br><span>presença moderna.</span></h2>
+      <p class="lead">Uma galeria com fotos do ambiente, detalhes do acabamento, cortes finalizados e atendimento transmite confiança antes mesmo do cliente chamar no WhatsApp.</p>
+      <div class="gallery"><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div><div class="ph"></div></div>
+    </div>
+  </section>
+
+  <section id="avaliacoes">
+    <div class="wrap">
+      <div class="eyebrow">Avaliações Google</div>
+      <h2 class="section-title">Quem vai,<br><span>recomenda.</span></h2>
+      <div class="reviews"><div class="review"><div class="stars">★★★★★</div><p>“Lugar bem agradável, serviço de qualidade e preço justo.”</p><b>Cliente Google</b></div><div class="review"><div class="stars">★★★★★</div><p>“Nota 10... até na música.”</p><b>Cliente Google</b></div><div class="review"><div class="stars">★★★★★</div><p>“Barbearia clássica e tradicional. Atendimento individualizado.”</p><b>Morais Barbearia</b></div></div>
+    </div>
+  </section>
+
+  <section id="localizacao" class="services">
+    <div class="wrap">
+      <div class="eyebrow">Como chegar</div>
+      <h2 class="section-title">Morais Barbearia<br><span>na Savassi.</span></h2>
+      <p class="lead">Rua Antônio de Albuquerque, 749 - Loja 14 - Savassi, Belo Horizonte - MG, 30112-010</p>
+      <br>
+      <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=R.%20Ant%C3%B4nio%20de%20Albuquerque%2C%20749%20-%20Loja%2014%20-%20Savassi%2C%20Belo%20Horizonte%20-%20MG&output=embed"></iframe>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow">Reserve seu horário</div>
+      <h2 class="section-title">Dê um trato<br><span>no visual hoje.</span></h2>
+      <p class="lead">Clique no botão abaixo e fale direto com a Morais Barbearia para consultar horários disponíveis.</p>
+      <div class="actions" style="justify-content:center"><a class="btn" href="https://wa.me/5531988018808" target="_blank">Agendar agora</a><a class="btn dark" href="https://www.instagram.com/morais_barbearia_oficial" target="_blank">Ver Instagram</a></div>
+    </div>
+  </section>
+
+  <footer><div class="wrap footergrid"><span>Morais Barbearia • Savassi, Belo Horizonte</span><span></span></div></footer>
+  <a class="float" href="https://wa.me/5531988018808" target="_blank">Agendar pelo WhatsApp</a>
+<script>
+  const topbar = document.querySelector('.topbar');
+  window.addEventListener('scroll', () => {
+    topbar.style.background = window.scrollY > 60
+      ? 'linear-gradient(180deg,rgba(14,13,11,.98),rgba(14,13,11,.90))'
+      : 'linear-gradient(180deg,rgba(22,19,16,.94),rgba(14,13,11,.82))';
+  });
+</script>
+</body>
+</html>
